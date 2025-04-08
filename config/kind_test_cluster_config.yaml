@@ -1,6 +1,6 @@
 name: "cluster108"
 # empty config means default is taken
-config: ""
+config: "./config/createwithconfig.yaml"
 imageName: "kindest/node:v1.30.2"
 retain: true
 waitTime: 60
@@ -10,6 +10,6 @@ metalLbReleaseName: "my-metallb"
 metalLbReleaseNamespace: "default"
 # LB IP range to be used for metalLB installationo. From Docker IP space
 # This is map seen using "docker network inspect -f '{{.IPAM.Config}}' kind"
-metalLbIpRange: "172.18.64.10-172.18.64.250"
+metalLbIpRange: "172.19.64.10-172.19.64.250"
 # Below path can be used to install a sample path and check traffic
 wordpressPath: "./config/wp-all.yaml"
