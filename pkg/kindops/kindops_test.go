@@ -23,8 +23,8 @@ func TestCreate(t *testing.T) {
 
 	t.Run("Test a wordpress app can be installed and test traffic to it thru a LB", func(t *testing.T) {
 
-		var c flagpole
-		c.getConf("./../config/kind_test_cluster_config.yaml", kindLogger)
+		var c Flagpole
+		c.GetConf("./../config/kind_test_cluster_config.yaml", kindLogger)
 
 		dclient, tclient, err := GetKubeClient(c.Kubeconfig, kindLogger)
 		check("Get Kind Cluster's Dynamic & Typed Clients - ", err, kindLogger)

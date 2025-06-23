@@ -49,7 +49,7 @@ import (
 */
 
 // flagpole is the struct to keep all the options for creating kind cluster
-type flagpole struct {
+type Flagpole struct {
 	Name                    string        `yaml:"name"`
 	Config                  string        `yaml:"config"`
 	ImageName               string        `yaml:"imageName"`
@@ -64,7 +64,7 @@ type flagpole struct {
 }
 
 // getConf will read yaml config file and return flagPole
-func (c *flagpole) getConf(configfile string, logger log.Logger) *flagpole {
+func (c *Flagpole) GetConf(configfile string, logger log.Logger) *Flagpole {
 
 	dat, err := os.ReadFile(configfile)
 	check("Read Config File - ", err, logger)
@@ -408,8 +408,8 @@ func SendHttpReq(address string, logger log.Logger) error {
 // wordpress.
 func CreateCluster(configfile string, logger log.Logger) error {
 
-	var c flagpole
-	c.getConf(configfile, logger)
+	var c Flagpole
+	c.GetConf(configfile, logger)
 
 	//fmt.Printf("%+v\n", c)
 
@@ -451,8 +451,8 @@ func CreateCluster(configfile string, logger log.Logger) error {
 // DeleteCluster will delete the kind cluster mentioned in configfile
 func DeleteCluster(configfile string, logger log.Logger) error {
 
-	var c flagpole
-	c.getConf(configfile, logger)
+	var c Flagpole
+	c.GetConf(configfile, logger)
 
 	provider := cluster.NewProvider(
 		cluster.ProviderWithLogger(logger),

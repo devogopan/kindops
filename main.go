@@ -14,12 +14,16 @@ func main() {
 
 	kindLogger := kindCmd.NewLogger()
 
+	var c kindops.Flagpole
+
+	c.GetConf("./config/kind_test_cluster_config.yaml", kindLogger)
+
 	err := kindops.CreateCluster("./config/kind_test_cluster_config.yaml", kindLogger)
 	check("Create a test kind cluster - ", err, kindLogger)
 
 	// kind_test_cluster_config.yaml under config directory mentions kubeConfig
 	// where previous step will write the kubeconfig file.
-	dclient, tclient, err := kindops.GetKubeClient("./config/cluster108.yaml", kindLogger)
+	dclient, tclient, err := kindops.GetKubeClient(c.Kubeconfig, kindLogger)
 	check("Get Kind Cluster's Dynamic & Typed Clients - ", err, kindLogger)
 
 	// install wordpress sample apps - deploy yaml at ./config/wp-all.yaml
